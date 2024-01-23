@@ -1,14 +1,24 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const navigate = useNavigate();
 
-    const onSubmit = (data) => {
-        // Handle form submission logic here
-        console.log(data);
-        reset();
+
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post('http://localhost:5000/users', data);
+            console.log(data);
+            reset();
+            navigate('/login');
+        } catch (error) {
+            console.error(error.response.data.message);
+        }
+        
     };
 
     return (
@@ -32,10 +42,20 @@ const Register = () => {
 
             <div className="mb-2">
                 <label htmlFor="phoneNumber" className="block text-gray-700 text-sm font-bold mb-1">Phone Number</label>
-                <input type="text" id="phoneNumber" placeholder='017.........' {...register('phoneNumber', { required: 'Phone number is required' })} className="border rounded-lg border-gray-300 p-2 w-full" />
+                <input
+                    type="text"
+                    id="phoneNumber"
+                    placeholder='017.........'
+                    {...register('phoneNumber', {
+                        required: 'Phone number is required',
+                        minLength: 11,
+                        maxLength: 11,
+                        pattern: /^(017|018|019|016|013|014)\d{8}$/ 
+                    })}
+                    className="border rounded-lg border-gray-300 p-2 w-full"
+                />
                 {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
             </div>
-
             <div className="mb-2">
                 <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-1">Email</label>
                 <input type="email" id="email" placeholder='Enter Your Email' {...register('email', { required: 'Email is required' })} className="border rounded-lg border-gray-300 p-2 w-full" />
