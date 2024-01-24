@@ -18,7 +18,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:5000/login', data);
+            const response = await axios.post('https://odd-pink-rattlesnake-veil.cyclic.app/login', data);
             const {user, token} = response.data;
             console.log(response);
             setUser(user);

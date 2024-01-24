@@ -10,7 +10,7 @@ const AddHouse = () => {
     const { user } = useAuth();
 
     const onSubmit = (data) => {
-        fetch('http://localhost:5000/addHouse', {
+        fetch('https://odd-pink-rattlesnake-veil.cyclic.app/addHouse', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(data)

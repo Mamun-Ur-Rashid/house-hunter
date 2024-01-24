@@ -55,7 +55,7 @@ const Footer = () => {
 
             </footer>
             <div>
-                <p className='text-center'>Copyright © 2023 - All right reserved by House Hunter</p>
+                <p className='text-center'>Copyright © 2024 - All right reserved by House Hunter</p>
             </div>
         </div>
     );

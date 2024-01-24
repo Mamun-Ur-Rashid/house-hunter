@@ -8,7 +8,7 @@ const MyHouse = () => {
     const [house, setHouses] = useState([]);
 
     useEffect( () => {
-        fetch(`http://localhost:5000/houses/${user?.phoneNumber}`)
+        fetch(`https://odd-pink-rattlesnake-veil.cyclic.app/houses/${user?.phoneNumber}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -21,7 +21,7 @@ const MyHouse = () => {
     return (
         <div className='container my-16'>
             <h1 className='text-center text-3xl font-bold my-5'>My Houses</h1>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead className='border bg-slate-100 p-4 gap-2'>
                         <tr>
